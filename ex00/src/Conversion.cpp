@@ -21,7 +21,7 @@ Conversion::Conversion(STRING value) : _original_value(value)
 	return;
 }
 
-Conversion::Conversion(const Conversion &copy)
+Conversion::Conversion(const Conversion &copy) : _original_value(copy._original_value)
 {
 	FT_MSG("Conversion(Conversion copy) Constructor")
 
@@ -42,7 +42,19 @@ Conversion::~Conversion()
 Conversion &Conversion::operator=(const Conversion &src)
 {
 	if (this != &src)
-		return *this;
+	{
+		this->_original_type = src._original_type;
+
+		this->_char_value = src._char_value;
+		this->_int_value = src._int_value;
+		this->_float_value = src._float_value;
+		this->_double_value = src._double_value;
+
+		this->_char_status = src._char_status;
+		this->_int_status = src._int_status;
+		this->_float_status = src._float_status;
+		this->_double_status = src._double_status;
+	}
 
 	return *this;
 }

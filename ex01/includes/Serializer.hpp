@@ -3,6 +3,12 @@
 
 #include "Strings.h"
 
+typedef struct Data
+{
+	int nb;
+	STRING str;
+} Data;
+
 class Serializer
 {
 private:
@@ -17,7 +23,7 @@ private:
 	int _int_value;
 	float _float_value;
 	double _double_value;
-	
+
 	char _char_status;
 	int _int_status;
 	float _float_status;

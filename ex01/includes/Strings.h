@@ -14,6 +14,7 @@
 #include <cstdio>
 #include <climits>
 #include <cctype>
+#include <stdint.h> 
 
 /******************************************
  *                                        *
