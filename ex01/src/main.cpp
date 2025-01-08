@@ -18,20 +18,31 @@ void press_any_key()
 	tcsetattr(STDIN_FILENO, TCSANOW, &old_terminal);
 }
 
-int main(int ac, char **av)
+int main()
 {
-	try
-	{
-		if (ac != 2)
-			throw Serializer::InvalidArgumentsException();
-		else
-		{
-			MAIN_MSG("Serializer")
-			Serializer Serializer(av[1]);
-		}
-	}
-	CATCH
+	Data data;
+	data.nb = 42;
+	data.str = "bla bla bla";
+
+	PRINT << CYAN "original values" << RESEND;
+	PRINT << CYAN "data.nb = " << data.nb << RESEND;
+	PRINT << CYAN "data.str = " << data.str << RESEND;
+	PRINT << CYAN "data = " << &data << RESEND;
+
+
 	SPACER(1)
+
+	Serializer serializer;
+
+	Data *new_data = serializer.deserialize(serializer.serialize(&data));
+
+	PRINT << GREEN "reinterpreted values" << RESEND;
+	PRINT << GREEN "new_data.nb = " << new_data->nb << RESEND;
+	PRINT << GREEN "new_data.str = " << new_data->str << RESEND;
+	PRINT << GREEN "new_data = " << new_data << RESEND;
+
+	SPACER(1)
+
 	// press_any_key();
 	return 0;
 }
