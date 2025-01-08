@@ -57,7 +57,7 @@ void identify(Base &p)
 	try
 	{
 		Base random_class = dynamic_cast<A &>(p);
-		PRINT << CYAN "Class A" << RESEND;
+		PRINT << GREEN "Class A" << RESEND;
 		return;
 	}
 	catch(const std::exception &e){};
@@ -65,7 +65,7 @@ void identify(Base &p)
 	try
 	{
 		Base random_class = dynamic_cast<B &>(p);
-		PRINT << CYAN "Class B" << RESEND;
+		PRINT << GREEN "Class B" << RESEND;
 		return;
 	}
 	catch(const std::exception &e){};
@@ -73,7 +73,7 @@ void identify(Base &p)
 	try
 	{
 		Base random_class = dynamic_cast<C &>(p);
-		PRINT << CYAN "Class C" << RESEND;
+		PRINT << GREEN "Class C" << RESEND;
 		return;
 	}
 	catch(const std::exception &e){};
