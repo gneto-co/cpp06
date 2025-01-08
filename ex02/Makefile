@@ -6,11 +6,11 @@
 #    By: gneto-co <gneto-co@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:11:28 by tblaase           #+#    #+#              #
-#    Updated: 2024/12/09 11:41:59 by gneto-co         ###   ########.fr        #
+#    Updated: 2025/01/08 12:30:24 by gneto-co         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	Bureaucrat
+NAME		=	Base
 EX			=	02
 
 CC			=	c++
@@ -32,7 +32,7 @@ UP			=	\033[A
 CUT			=	\033[K
 
 #source files
-SRC_FILES	=	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRC_FILES	=	main.cpp Base.cpp
 
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
