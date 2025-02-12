@@ -12,24 +12,22 @@ typedef struct Data
 class Serializer
 {
 private:
-
-public:
-
 	/* constructors destructors */
 	Serializer();
 	Serializer(const Serializer &copy);
 	~Serializer();
 
+	/* overload operators */
+	Serializer &operator=(const Serializer &src);
+
+public:
 	/* attributes */
 
 	/* getters */
 
 	/* methods */
-	uintptr_t serialize(Data* ptr);
-	Data* deserialize(uintptr_t raw);
-
-	/* overload operators */
-	Serializer &operator=(const Serializer &src);
+	static uintptr_t serialize(Data *ptr);
+	static Data *deserialize(uintptr_t raw);
 
 	/* exceptions */
 };

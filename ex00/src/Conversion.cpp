@@ -189,6 +189,8 @@ void Conversion::print_values()
 	PRINT << "char: ";
 	if (_char_status == VALID && std::isprint(_char_value))
 		PRINT << "\'" << _char_value << "\'" << RESEND;
+	else if (_original_type == T_FLOAT_NAN_INF || _original_type == T_DOUBLE_NAN_INF || _double_value > 255 || _double_value < 0)
+		PRINT << BRIGHT_RED "Impossible" << RESEND;	
 	else
 		PRINT << BRIGHT_RED "Non displayable" << RESEND;
 
@@ -197,7 +199,7 @@ void Conversion::print_values()
 	if (_int_status == VALID && _double_value <= INT_MAX && _double_value >= INT_MIN)
 		PRINT << _int_value << RESEND;
 	else
-		PRINT << BRIGHT_RED "invalid" << RESEND;
+		PRINT << BRIGHT_RED "Impossible" << RESEND;
 
 	// float
 	PRINT << "float: ";
@@ -211,7 +213,7 @@ void Conversion::print_values()
 		else
 			PRINT << _float_value << "f" << RESEND;
 	else
-		PRINT << BRIGHT_RED "invalid" << RESEND;
+		PRINT << BRIGHT_RED "Impossible" << RESEND;
 
 	// double
 	PRINT << "double: ";
@@ -225,7 +227,7 @@ void Conversion::print_values()
 		else
 			PRINT << _float_value << RESEND;
 	else
-		PRINT << BRIGHT_RED "invalid" << RESEND;
+		PRINT << BRIGHT_RED "Impossible" << RESEND;
 }
 
 /* !SECTION */

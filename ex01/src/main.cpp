@@ -1,25 +1,9 @@
 #include "../includes/Serializer.hpp"
 
-#include <termios.h>
-#include <unistd.h>
-void press_any_key()
-{
-	PRINT << LOW_BRIGHT << "Press any key ( )" << CURSOR_LEFT(2);
-
-	struct termios old_terminal, newt;
-	tcgetattr(STDIN_FILENO, &old_terminal);
-	newt = old_terminal;
-	newt.c_lflag &= ~(ICANON | ECHO);
-	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-
-	char c = getchar();
-	PRINT << c << CURSOR_RIGHT(1) << RESEND;
-
-	tcsetattr(STDIN_FILENO, TCSANOW, &old_terminal);
-}
-
 int main()
 {
+	// creating data
+
 	Data data;
 	data.nb = 42;
 	data.str = "bla bla bla";
@@ -29,12 +13,19 @@ int main()
 	PRINT << CYAN "data.str = " << data.str << RESEND;
 	PRINT << CYAN "data = " << &data << RESEND;
 
+	SPACER(1)
+
+	// encrypting data
+
+	uintptr_t encrypted_data = Serializer::serialize(&data);
+
+	PRINT << ORANGE "encrypted_data = " << encrypted_data << RESEND;
 
 	SPACER(1)
 
-	Serializer serializer;
+	// decrypting data
 
-	Data *new_data = serializer.deserialize(serializer.serialize(&data));
+	Data *new_data = Serializer::deserialize(encrypted_data);
 
 	PRINT << GREEN "reinterpreted values" << RESEND;
 	PRINT << GREEN "new_data.nb = " << new_data->nb << RESEND;
@@ -43,6 +34,5 @@ int main()
 
 	SPACER(1)
 
-	// press_any_key();
 	return 0;
 }
